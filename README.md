@@ -1,40 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Blog & Tutorials
 
-## Getting Started
+A Next.js blog and tutorials platform. Tutorials, books and PDFs are loaded from a JSON file, can be filtered by tag, searched by title, paginated, and saved as favorites.
 
-First, run the development server:
+## Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Tutorial catalog:** the home page lists tutorials, books and PDFs from `public/tutoriels.json`, with tag filtering and pagination (5 per page).
+- **Favorites:** items can be added to or removed from favorites, which are saved in the browser's `localStorage` and listed on the Profile page.
+- **Search:** a search page filters tutorials by title.
+- **Dynamic routes:** `/tutoriels/[tutorielId]` and `/tutoriels/[tutorielId]/[sectionId]` display a tutorial and its sections.
+- **Static pages:** About, Blog and a Contact form (client-side state, logged to the console on submit).
+- **Shared header:** navigation bar built with CSS Modules and `classnames`, showing the app name from an environment variable.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technologies Used
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- **Framework:** Next.js 15 (Pages Router), React 19
+- **Styling:** CSS Modules, `classnames`
+- **Data:** static JSON file (`public/tutoriels.json`)
+- **Persistence:** browser `localStorage` (favorites)
+- **Linting:** ESLint
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Prerequisites
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+- Node.js 18+
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Run Locally
 
-## Learn More
+Clone the project:
 
-To learn more about Next.js, take a look at the following resources:
+    git clone https://github.com/RajaAifa/blog.git
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+Go to the project directory:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    cd blog
 
-## Deploy on Vercel
+Install dependencies:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    npm install
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+Create a `.env.local` file at the project root:
+
+    NEXT_PUBLIC_APP_NAME=My Blog
+
+Start the development server:
+
+    npm run dev
+
+The app runs at http://localhost:3000.
+
+## How to Use
+
+1. `/` — browse tutorials, filter by tag, paginate, and add items to favorites.
+2. `/recherche` — search tutorials by title.
+3. `/tutoriels/1` and `/tutoriels/1/1` — open a tutorial and read its sections.
+4. `/profile` — view your favorite tutorials.
+5. `/blog`, `/about`, `/contact` — static pages and the contact form.
+
+## Project Structure
+
+    projet/
+    ├── src/
+    │   ├── components/
+    │   │   └── Header.js              # Navigation bar
+    │   ├── pages/
+    │   │   ├── api/hello.js           # Sample API route
+    │   │   ├── blog/index.js          # Blog page
+    │   │   ├── tutoriels/
+    │   │   │   ├── [tutorielId].js            # Tutorial page
+    │   │   │   └── [tutorielId]/[sectionId].js # Tutorial section page
+    │   │   ├── about.js
+    │   │   ├── contact.js             # Contact form
+    │   │   ├── profile.js             # Favorites
+    │   │   ├── recherche.js           # Search
+    │   │   └── index.js               # Home: list, tag filter, pagination
+    │   └── styles/                    # Global and CSS Module styles
+    ├── public/
+    │   └── tutoriels.json             # Tutorials data
+    ├── next.config.mjs
+    └── package.json
