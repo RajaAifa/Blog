@@ -27,7 +27,7 @@ A Next.js blog and tutorials platform. Tutorials, books and PDFs are loaded from
 
 Clone the project:
 
-    git clone https://github.com/RajaAifa/blog.git
+    git clone https://github.com/RajaAifa/Blog.git
 
 Go to the project directory:
 
